@@ -81,40 +81,76 @@
                     </svg>
                     <h2>Our Services</h2>
                 </div>
-                <div class="services-carousel-container">
-                    <button class="carousel-btn left" id="servicePrev"><i class="fas fa-chevron-left"></i></button>
-                    <div class="services-carousel" id="servicesCarousel">
-                        <div class="service-slide active">
-                            <h3>Talent Acquisition</h3>
-                            <p>Transform your workforce with our strategic talent solutions. We help you build
-                                high-performing teams through innovative recruitment strategies, comprehensive skill
-                                assessment, and seamless onboarding processes.</p>
-                        </div>
-                        <div class="service-slide">
-                            <h3>AI & Data Analytics</h3>
-                            <p>Unlock the power of artificial intelligence and advanced analytics. Our solutions
-                                help you make data-driven decisions, predict market trends, and optimize operations
-                                through cutting-edge AI technologies and machine learning algorithms.</p>
-                        </div>
-                        <div class="service-slide">
-                            <h3>Cloud Transformation</h3>
-                            <p>Accelerate your digital journey with our cloud solutions. We enable seamless
-                                migration, robust security, and scalable infrastructure that drives business agility
-                                and innovation in the cloud era.</p>
+                <div class="services-carousel" id="servicesCarousel" style="width:100%; position:relative;">
+                    <div class="service-slide active">
+                        <div class="service-split-modern">
+                            <div class="service-img-col">
+                                <img src="https://innoveusit.com/wp-content/uploads/2025/02/Talent-Aoqquestion.webp"
+                                    alt="Talent Acquisition" class="service-img-modern">
+                                <div class="carousel-arrows">
+                                    <button class="carousel-btn left" id="servicePrev"><i
+                                            class="fas fa-chevron-left"></i></button>
+                                    <button class="carousel-btn right" id="serviceNext"><i
+                                            class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                            <div class="service-desc-modern">
+                                <h3>Talent Acquisition</h3>
+                                <p>Transform your workforce with our strategic talent solutions. We help you build
+                                    high-performing teams through innovative recruitment strategies, comprehensive skill
+                                    assessment, and seamless onboarding processes.</p>
+                                <button class="service-learn-btn">Learn More</button>
+                            </div>
                         </div>
                     </div>
-                    <button class="carousel-btn right" id="serviceNext"><i class="fas fa-chevron-right"></i></button>
+                    <div class="service-slide">
+                        <div class="service-split-modern">
+                            <div class="service-img-col">
+                                <img src="https://innoveusit.com/wp-content/uploads/2025/02/AI-Data-Analytics.webp"
+                                    alt="AI & Data Analytics" class="service-img-modern">
+                                <div class="carousel-arrows">
+                                    <button class="carousel-btn left" id="servicePrev"><i
+                                            class="fas fa-chevron-left"></i></button>
+                                    <button class="carousel-btn right" id="serviceNext"><i
+                                            class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                            <div class="service-desc-modern">
+                                <h3>AI & Data Analytics</h3>
+                                <p>Unlock the power of artificial intelligence and advanced analytics. Our solutions
+                                    help you make data-driven decisions, predict market trends, and optimize operations
+                                    through cutting-edge AI technologies and machine learning algorithms.</p>
+                                <button class="service-learn-btn">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-slide">
+                        <div class="service-split-modern">
+                            <div class="service-img-col">
+                                <img src="https://innoveusit.com/wp-content/uploads/2025/02/Cloud-Transformatiom.webp"
+                                    alt="Cloud Transformation" class="service-img-modern">
+                                <div class="carousel-arrows">
+                                    <button class="carousel-btn left" id="servicePrev"><i
+                                            class="fas fa-chevron-left"></i></button>
+                                    <button class="carousel-btn right" id="serviceNext"><i
+                                            class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                            <div class="service-desc-modern">
+                                <h3>Cloud Transformation</h3>
+                                <p>Accelerate your digital journey with our cloud solutions. We enable seamless
+                                    migration, robust security, and scalable infrastructure that drives business agility
+                                    and innovation in the cloud era.</p>
+                                <button class="service-learn-btn">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="carousel-dots" id="carouselDots">
                     <span class="dot active"></span>
                     <span class="dot"></span>
                     <span class="dot"></span>
                 </div>
-            </div>
-            <div class="split-image image-overlap services-image-split">
-                <img id="serviceImageSplit"
-                    src="https://innoveusit.com/wp-content/uploads/2025/02/Talent-Aoqquestion.webp" alt="Service Image"
-                    style="max-width:400px; border-radius:1.5rem; box-shadow:0 8px 32px 0 rgba(31,38,135,0.37);">
             </div>
         </div>
     </section>
@@ -338,37 +374,41 @@
 
         // Carousel logic for services
         const slides = document.querySelectorAll('.service-slide');
-        const images = [
-            'https://innoveusit.com/wp-content/uploads/2025/02/Talent-Aoqquestion.webp',
-            'https://innoveusit.com/wp-content/uploads/2025/02/AI-Data-Analytics.webp',
-            'https://innoveusit.com/wp-content/uploads/2025/02/Cloud-Transformatiom.webp'
-        ];
+        const dots = document.querySelectorAll('.carousel-dots .dot');
         let current = 0;
-        const imgEl = document.getElementById('serviceImageSplit');
 
         function showSlide(idx) {
             slides.forEach((s, i) => s.classList.toggle('active', i === idx));
-            imgEl.src = images[idx];
             updateDots(idx);
-
-            // Add fade effect to image
-            imgEl.style.opacity = '0';
-            setTimeout(() => {
-                imgEl.style.opacity = '1';
-            }, 50);
         }
 
-        document.getElementById('servicePrev').onclick = () => {
-            current = (current - 1 + slides.length) % slides.length;
-            showSlide(current);
-        };
+        function updateDots(idx) {
+            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
 
-        document.getElementById('serviceNext').onclick = () => {
-            current = (current + 1) % slides.length;
-            showSlide(current);
-        };
+        // Attach event listeners to all carousel buttons
+        document.querySelectorAll('#servicePrev').forEach(btn => {
+            btn.onclick = () => {
+                current = (current - 1 + slides.length) % slides.length;
+                showSlide(current);
+            };
+        });
+        document.querySelectorAll('#serviceNext').forEach(btn => {
+            btn.onclick = () => {
+                current = (current + 1) % slides.length;
+                showSlide(current);
+            };
+        });
 
-        // Add keyboard navigation
+        // Dots navigation
+        dots.forEach((dot, idx) => {
+            dot.onclick = () => {
+                current = idx;
+                showSlide(current);
+            };
+        });
+
+        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
                 current = (current - 1 + slides.length) % slides.length;
@@ -379,34 +419,7 @@
             }
         });
 
-        // Add auto-rotation
-        let autoRotate = setInterval(() => {
-            current = (current + 1) % slides.length;
-            showSlide(current);
-        }, 5000);
-
-        // Pause auto-rotation on hover
-        const carouselContainer = document.querySelector('.services-carousel-container');
-        carouselContainer.addEventListener('mouseenter', () => clearInterval(autoRotate));
-        carouselContainer.addEventListener('mouseleave', () => {
-            autoRotate = setInterval(() => {
-                current = (current + 1) % slides.length;
-                showSlide(current);
-            }, 5000);
-        });
-
-        // Add script for carousel dots
-        const dots = document.querySelectorAll('.carousel-dots .dot');
-        function updateDots(idx) {
-            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-        }
-        dots.forEach((dot, idx) => {
-            dot.onclick = () => {
-                current = idx;
-                showSlide(current);
-            };
-        });
-
+        // Initialize
         showSlide(current);
     </script>
 </body>
